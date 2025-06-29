@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Tenho uma pergunta pra você...</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #ffcccc, #ffe6e6);
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 50px;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #d63384;
+      margin-top: 30px;
+      animation: pulse 2s infinite;
+    }
+
+    .mensagem {
+      font-size: 1.5em;
+      color: #8b005d;
+      margin: 30px auto 20px;
+      max-width: 600px;
+    }
+
+    button {
+      margin: 20px;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 30px;
+      background-color: #ff66b2;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    #resposta {
+      margin-top: 40px;
+      font-size: 2em;
+      color: #ff1493;
+      display: none;
+    }
+
+    #teAmoMensagem {
+      margin-top: 30px;
+      font-size: 2em;
+      color: #e60073;
+      display: none;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .coracao {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(45deg);
+      animation: subir 10s infinite;
+      opacity: 0.6;
+    }
+
+    .coracao::before, .coracao::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .coracao::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .coracao::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes subir {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .botoes {
+      display: none;
+      margin-top: 30px;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    #nao {
+      background-color: gray;
+      color: white;
+      opacity: 0.8;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Tenho algo importante pra te perguntar...</h1>
+
+  <div class="mensagem">
+    Maria Vitória, te conheci por acaso, quando menos esperava... e, de forma inesperada, você se tornou tudo. Hoje, eu não consigo imaginar meus dias sem o seu sorriso, sem sua companhia, sem o seu jeito único que me encanta cada vez mais. Agora, o que mais quero é construir os melhores momentos da vida ao seu lado, um por um, dia após dia. 💖
+  </div>
+
+  <button onclick="mostrarPedido()">Clique aqui 💌</button>
+
+  <div id="resposta" style="display: none;">
+    Quer namorar comigo? 💖
+    <div class="botoes" id="botoes-resposta">
+      <button onclick="respostaSim()">Sim</button>
+      <button id="nao" onmouseover="fugir(this)">Não</button>
+    </div>
+  </div>
+
+  <div id="teAmoMensagem">Te amoooooooo! ❤️❤️❤️</div>
+
+  <script>
+    function mostrarPedido() {
+      const resposta = document.getElementById("resposta");
+      resposta.style.display = "block";
+      const botoes = document.getElementById("botoes-resposta");
+      botoes.style.display = "flex";
+    }
+
+    function respostaSim() {
+      alert('Eu sabia! ❤️');
+      document.getElementById("teAmoMensagem").style.display = "block";
+    }
+
+    function fugir(btn) {
+      const botoesDiv = document.getElementById("botoes-resposta");
+      const largura = botoesDiv.offsetWidth;
+      const altura = botoesDiv.offsetHeight;
+
+      const x = Math.floor(Math.random() * (largura - btn.offsetWidth));
+      const y = Math.floor(Math.random() * (altura - btn.offsetHeight));
+
+      btn.style.position = "absolute";
+      btn.style.left = x + "px";
+      btn.style.top = y + "px";
+    }
+
+    for (let i = 0; i < 30; i++) {
+      let heart = document.createElement("div");
+      heart.classList.add("coracao");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDelay = Math.random() * 10 + "s";
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
